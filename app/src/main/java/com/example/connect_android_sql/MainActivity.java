@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static String ip = "192.168.1.4";
     private static String port = "1433";
     private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
-    private static String database = "testing";
+    private static String database = "e-commerce";
     private static String username = "test4";
     private static String password = "test";
     private static String url = "jdbc:jtds:sqlserver://"+ip+":"+port+"/"+database;
@@ -63,9 +63,10 @@ public class MainActivity extends AppCompatActivity {
             Statement statement = null;
             try {
                 statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("Select * from person;");
+                ResultSet resultSet = statement.executeQuery("Select * from product;");
                 while (resultSet.next()){
-                    Log.d("appTAG", "data: " + resultSet.getString(1) + ", " + resultSet.getString(2));
+                    Log.d("appTAG", "data: " + resultSet.getString(1) + ", "
+                            + resultSet.getString(2));
                     textView.setText(resultSet.getString(1));
                 }
             } catch (SQLException e) {
