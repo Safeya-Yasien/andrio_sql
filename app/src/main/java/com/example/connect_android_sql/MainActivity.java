@@ -17,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import io.reactivex.rxjava3.disposables.Disposable;
 import kotlinx.coroutines.Job;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             textView.setText("FAILURE");
         }
+
     }
 
     public void sqlButton(View view) {
@@ -63,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
             Statement statement = null;
             try {
                 statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("Select * from product;");
+                ResultSet resultSet = statement.executeQuery("Select * from product_rating;");
                 while (resultSet.next()){
                     Log.d("appTAG", "data: " + resultSet.getString(1) + ", "
-                            + resultSet.getString(2));
+                            + resultSet.getString(2)
+                            + ", "
+                            + resultSet.getString(3));
                     textView.setText(resultSet.getString(1));
                 }
             } catch (SQLException e) {
@@ -77,4 +82,7 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("Connection is null");
         }
     }
+
+
+
 }
