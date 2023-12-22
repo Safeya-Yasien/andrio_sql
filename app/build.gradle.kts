@@ -6,6 +6,10 @@ android {
     namespace = "com.example.connect_android_sql"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.connect_android_sql"
         minSdk = 24
@@ -33,6 +37,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment:2.7.6")
+    implementation("androidx.navigation:navigation-ui:2.7.6")
 //    implementation(files("C:\\Users\\DUBAI\\Documents\\connect_android_sql\\app\\libs\\jtds-1.3.1.jar"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
