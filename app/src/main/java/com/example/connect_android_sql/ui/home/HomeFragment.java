@@ -1,4 +1,4 @@
-package com.example.connect_android_sql.ui;
+package com.example.connect_android_sql.ui.home;
 
 import android.app.Activity;
 import android.os.Bundle;

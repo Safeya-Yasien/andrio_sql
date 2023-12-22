@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.connect_android_sql.ui.HomeFragment"
+        android:name="com.example.connect_android_sql.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>
