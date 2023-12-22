@@ -1,5 +1,4 @@
-
-package com.example.connect_android_sql;
+package com.example.connect_android_sql.data;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,12 +14,6 @@ public class DatabaseQuery {
     void insertProduct(String productName, String productDescription, double price, int productQuantity, int categoryId) {
         String query = "INSERT INTO product (product_name, product_description, price, product_quantity, category_id) " +
                 "VALUES ('" + productName + "', '" + productDescription + "', " + price + ", " + productQuantity + ", " + categoryId + ")";
-        Log.d("appTAG", "query: " + query);
-    }
-
-    void insertCustomer(String firstName, String lastName, String email, String city, String address, int postalCode, String phone, boolean isAdmin) {
-        String query = "INSERT INTO customer (first_name, last_name, email, city, address, postal_code, phone, isadmin) " +
-                "VALUES ('" + firstName + "', '" + lastName + "', '" + email + "', '" + city + "', '" + address + "', " + postalCode + ", '" + phone + "', " + (isAdmin ? 1 : 0) + ")";
         Log.d("appTAG", "query: " + query);
     }
 
@@ -50,9 +43,38 @@ public class DatabaseQuery {
         Log.d("appTAG", "query: " + query);
     }
 
+    public String insertCustomer(String firstName, String lastName, String email, String password, String city, String address, int postalCode, String phone, boolean isAdmin) {
+        String query = "INSERT INTO customer (first_name, last_name, email, password, city, address, postal_code, phone, isadmin) " +
+                "VALUES ('" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "', '" + city + "', '" + address + "', " + postalCode + ", '" + phone + "', " + (isAdmin ? 1 : 0) + ");";
+        Log.d("appTAG", "query: " + query);
+        return query;
+    }
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    String getAllProducts() {
+        return "SELECT * FROM product;";
+    }
+
+    String getProductById(int id) {
+        return "SELECT * FROM product WHERE product_id = " + id + ";";
+    }
 }
