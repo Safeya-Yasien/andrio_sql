@@ -50,6 +50,10 @@ public class DatabaseQuery {
         return query;
     }
 
+    public String getLoginQuery(String username, String password) {
+//        return "SELECT * FROM customer WHERE email = '" + username + "' AND password = '" + password + "'";
+        return "SELECT * FROM customer WHERE email = ? AND password = ?";
+    }
 
 
 

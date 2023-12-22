@@ -20,6 +20,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.example.connect_android_sql.R;
 import com.example.connect_android_sql.data.DatabaseQuery;
 import com.example.connect_android_sql.databinding.FragmentRegisterBinding;
 
@@ -106,10 +107,29 @@ public class RegisterFragment extends Fragment {
             Class.forName(CLASSES);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            Log.d("appTAG", "register: " + resultSet);
+            int rowsAffected = statement.executeUpdate(query);
+            Log.d("appTAG", "Rows affected: " + rowsAffected);
+            Toast.makeText(requireActivity(), "Register Done", Toast.LENGTH_SHORT).show();
+            back();
         } catch (Exception e) {
             Log.e("appTAG", "register: " + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                Log.e("appTAG", "Error closing connection: " + e.getMessage());
+            }
+        }
+    }
+
+    private void back() {
+        int currentDestinationId = currentDestination != null ? currentDestination.getId() : -1;
+
+        if (currentDestinationId == R.id.registerFragment) {
+            NavController navController = Navigation.findNavController(requireView());
+            navController.navigateUp();
         }
     }
 }
