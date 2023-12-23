@@ -1,9 +1,12 @@
 package com.example.connect_android_sql.ui;
 
 import static com.example.connect_android_sql.ui.MainActivity.CLASSES;
-import static com.example.connect_android_sql.ui.MainActivity.PASSWORD;
-import static com.example.connect_android_sql.ui.MainActivity.URL;
-import static com.example.connect_android_sql.ui.MainActivity.USERNAME;
+import static com.example.connect_android_sql.ui.MainActivity.PASSWORD_1;
+import static com.example.connect_android_sql.ui.MainActivity.PASSWORD_2;
+import static com.example.connect_android_sql.ui.MainActivity.URL_1;
+import static com.example.connect_android_sql.ui.MainActivity.URL_2;
+import static com.example.connect_android_sql.ui.MainActivity.USERNAME_1;
+import static com.example.connect_android_sql.ui.MainActivity.USERNAME_2;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -26,7 +29,6 @@ import com.example.connect_android_sql.databinding.FragmentRegisterBinding;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -61,6 +63,28 @@ public class RegisterFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         setActions();
+
+        try {
+            String query = dbQuery.insertCategory("laptop2", "des2");
+            Class.forName(CLASSES);
+            connection = DriverManager.getConnection(URL_1, USERNAME_1, PASSWORD_1);
+            Statement statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate(query);
+            Log.d("appTAG", "Rows affected: " + rowsAffected);
+            Toast.makeText(requireActivity(), "add category Done", Toast.LENGTH_SHORT).show();
+            Log.d("appTAG", "add category: " + rowsAffected);
+
+        } catch (Exception e) {
+            Log.e("appTAG", "add category: " + e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                Log.e("appTAG", "Error closing connection: " + e.getMessage());
+            }
+        }
     }
 
     private void setActions() {
@@ -105,14 +129,20 @@ public class RegisterFragment extends Fragment {
         try {
             String query = dbQuery.insertCustomer(fName, lName, username, password, city, address, Integer.parseInt(postCode), phone, false);
             Class.forName(CLASSES);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection = DriverManager.getConnection(URL_1, USERNAME_1, PASSWORD_1);
             Statement statement = connection.createStatement();
             int rowsAffected = statement.executeUpdate(query);
             Log.d("appTAG", "Rows affected: " + rowsAffected);
             Toast.makeText(requireActivity(), "Register Done", Toast.LENGTH_SHORT).show();
             back();
+        } catch (SQLException e) {
+            Log.e("appTAG", "SQL Exception: " + e.getMessage());
+            Log.e("appTAG", "SQL State: " + e.getSQLState());
+            Log.e("appTAG", "Error Code: " + e.getErrorCode());
+            e.printStackTrace();
         } catch (Exception e) {
-            Log.e("appTAG", "register: " + e.getMessage());
+            Log.e("appTAG", "General Exception: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 if (connection != null) {

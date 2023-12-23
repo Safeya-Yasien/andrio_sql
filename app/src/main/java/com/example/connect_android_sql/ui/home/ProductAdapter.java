@@ -32,13 +32,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Product currentItem = data.get(position);
 
         holder.name.setText(currentItem.getProductName());
         holder.des.setText(currentItem.getProductDescription());
-        holder.price.setText((int) currentItem.getPrice());
+        holder.price.setText(currentItem.getPrice() +"");
 
         holder.root.setOnClickListener(v -> mListener.onClick(currentItem));
     }

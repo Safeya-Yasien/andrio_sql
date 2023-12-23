@@ -1,9 +1,12 @@
 package com.example.connect_android_sql.ui;
 
 import static com.example.connect_android_sql.ui.MainActivity.CLASSES;
-import static com.example.connect_android_sql.ui.MainActivity.PASSWORD;
-import static com.example.connect_android_sql.ui.MainActivity.URL;
-import static com.example.connect_android_sql.ui.MainActivity.USERNAME;
+import static com.example.connect_android_sql.ui.MainActivity.PASSWORD_1;
+import static com.example.connect_android_sql.ui.MainActivity.PASSWORD_2;
+import static com.example.connect_android_sql.ui.MainActivity.URL_1;
+import static com.example.connect_android_sql.ui.MainActivity.URL_2;
+import static com.example.connect_android_sql.ui.MainActivity.USERNAME_1;
+import static com.example.connect_android_sql.ui.MainActivity.USERNAME_2;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -85,7 +88,7 @@ public class LoginFragment extends Fragment {
             String query = dbQuery.getLoginQuery(username, password);
             Log.d("appTAG", "login query: " + query);
             Class.forName(CLASSES);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection = DriverManager.getConnection(URL_1, USERNAME_1, PASSWORD_1);
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, username);
@@ -100,9 +103,11 @@ public class LoginFragment extends Fragment {
                 if (resultSet.next()) {
                     // User exists, login successful
                     Log.d("appTAG", "Login successful");
+                    Toast.makeText(requireActivity(), "Login successful", Toast.LENGTH_SHORT).show();
                     navToHome();
                 } else {
                     // User does not exist or incorrect password, login failed
+                    Toast.makeText(requireActivity(), "Invalid Email or Password", Toast.LENGTH_SHORT).show();
                     Log.d("appTAG", "Login failed");
                 }
             }

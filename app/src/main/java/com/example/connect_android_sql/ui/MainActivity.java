@@ -21,12 +21,17 @@ import java.sql.Statement;
 public class MainActivity extends AppCompatActivity {
 
     public static String IP = "192.168.1.4";
-    public static String PORT = "1433";
+    public static String PORT_1 = "1443";
+    public static String PORT_2 = "1433";
     public static String CLASSES = "net.sourceforge.jtds.jdbc.Driver";
-    public static String DATABASE = "e-commerce";
-    public static String USERNAME = "test4";
-    public static String PASSWORD = "test";
-    public static String URL = "jdbc:jtds:sqlserver://"+IP+":"+PORT+"/"+DATABASE;
+    public static String DATABASE_1 = "ecommerce";
+    public static String DATABASE_2 = "ecommerce2";
+    public static String USERNAME_1 = "sameh";
+    public static String PASSWORD_1 = "0000";
+    public static String USERNAME_2 = "test5";
+    public static String PASSWORD_2 = "test";
+    public static String URL_1 = "jdbc:jtds:sqlserver://"+IP+":"+PORT_2+"/"+DATABASE_1;
+    public static String URL_2 = "jdbc:jtds:sqlserver://"+IP+":"+PORT_2+"/"+DATABASE_2;
 
     private TextView textView;
 

@@ -6,9 +6,10 @@ import android.util.Log;
 
 public class DatabaseQuery {
 
-    void insertCategory(String name, String description) {
+    public String insertCategory(String name, String description) {
         String query = "INSERT INTO category (category_name, category_description) VALUES ('" + name + "', '" + description + "')";
         Log.d("appTAG", "query: " + query);
+        return query;
     }
 
     void insertProduct(String productName, String productDescription, double price, int productQuantity, int categoryId) {
@@ -55,24 +56,9 @@ public class DatabaseQuery {
         return "SELECT * FROM customer WHERE email = ? AND password = ?";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getProducts() {
+        return "SELECT * FROM product;";
+    }
 
     String getAllProducts() {
         return "SELECT * FROM product;";
